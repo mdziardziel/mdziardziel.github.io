@@ -24,6 +24,19 @@ function getGridTemplateArea(){
   return template.substring(1, template.length - 1).split("\" \"")
 }
 
+
+  // COLORIZE TILES AT START
+  function colorizeTilesAtStrat() {
+    $('.rowclick').each( function() {
+      let available_colors = ['rgba(183,28,28', 'rgba(136,14,79', 'rgba(74,20,140', 'rgba(49,27,146', 'rgba(26,35,126', 'rgba(13,71,161', 'rgba(1,87,155', 'rgba(0,96,100', 'rgba(0,77,64', 'rgba(27,94,32', 'rgba(51,105,30', 'rgba(130,119,23']
+      let color = available_colors[Math.floor(Math.random()*available_colors.length)]
+      let opacity = ((Math.floor(Math.random() * 5)/10) + 0.5 ).toString();
+      // console.log(color)
+      $(this).css('box-shadow', 'inset 0 0 0 1000px ' + color +', ' + opacity + ')' )
+    })
+  }
+  // COLORIZE TILES
+
 $(window).on('load', function() {
 
   // --------- FEATURE 1 TILES SLIDER ---------------
@@ -63,20 +76,6 @@ $(window).on('load', function() {
     // $('#' + id).css('min-width', '500px')
   });
   // ----------- FEATURE 2 -----------------------------------
-
-
-  // COLORIZE TILES AT START
-  function colorizeTilesAtStrat() {
-    $('.rowclick').each( function() {
-      let available_colors = ['rgba(183,28,28', 'rgba(136,14,79', 'rgba(74,20,140', 'rgba(49,27,146', 'rgba(26,35,126', 'rgba(13,71,161', 'rgba(1,87,155', 'rgba(0,96,100', 'rgba(0,77,64', 'rgba(27,94,32', 'rgba(51,105,30', 'rgba(130,119,23']
-      let color = available_colors[Math.floor(Math.random()*available_colors.length)]
-      let opacity = ((Math.floor(Math.random() * 5)/10) + 0.5 ).toString();
-      // console.log(color)
-      $(this).css('box-shadow', 'inset 0 0 0 1000px ' + color +', ' + opacity + ')' )
-    })
-  }
-  colorizeTilesAtStrat()
-  // COLORIZE TILES
 
 
   // --------------- FEATURE 3 ENLARGE TILE ------------------------------
@@ -149,4 +148,8 @@ $(window).on('load', function() {
     }
   });
   // ----------------- FEATURE 3 -------------------------------------
+});
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  colorizeTilesAtStrat()
 });
