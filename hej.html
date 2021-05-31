@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>HEJ</title>
+    <style>
+        body {
+            background: url('https://images-na.ssl-images-amazon.com/images/I/71LUWsUphzL._SX425_.jpg');
+            max-width: 100vw;
+        }
+
+        .block {
+            display: block;
+            width: 100%;
+            border: none;
+            background-color: rgb(116, 241, 231);
+            padding: 20px 0px 20px 0px;
+            margin: 0px 0px 50px 0px;
+            font-size: 30px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .dogs {
+            border-style: solid;
+            border-width: 10px;
+            min-height: 100px;
+            min-width: 100px;
+            background: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+    </style>
+    <script type="text/javascript" src="pieski/ajax.js"></script>
+    <script>
+        var requestPromise = function (method, url) {
+            return new Promise(function (resolve, reject) {
+                var req = new XMLHttpRequest();
+                req.open(method, url, true); /* Argument trzeci, wartość true, określa, że żądanie ma być asynchroniczne */
+                req.onload = function () {
+                    if (this.status == 200) {
+                        resolve(req.response)
+                    } else {
+                        reject(req.statusText)
+                    }
+                }
+                req.onerror = function () {
+                    reject(req.statusText)
+                };
+                req.send(null)
+            })
+        };
+
+        var moreDogs = function () {
+          const xyz = ['mam remont', 'źle się czuje', 'kuzynka przyjeżdża', 'nie mam czasu', 'mam kurs', 'jestem zmęczona', 'jadę do mechanika']
+          var randomColor = "#"+((1<<24)*Math.random()|0).toString(16); 
+          $('.dogs').css('border-color', randomColor.toString())
+          $('.dogs').text(xyz[Math.floor(Math.random() * xyz.length)])
+          $('button').one('click', moreDogs)
+        }
+
+        $(function () {
+            $('button.block').one('click', moreDogs)
+        });
+    </script>
+</head>
+
+<body>
+    <button class='block'>Losuj wymówkę</button>
+    <div class='dogs'></div>
+</body>
+
+</html>
